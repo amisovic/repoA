@@ -1,6 +1,6 @@
 name: Build
 
-run-name: ${{ inputs.orchestrator_runid && format('Build-{0}', inputs.orchestrator_runid) || 'Build' }}
+run-name: ${{ inputs.orchestrator_runid && format('Build-Orch-{0}', inputs.orchestrator_runid) || 'Build' }}
 
 on:
   workflow_dispatch:
