@@ -2,11 +2,17 @@ name: Build
 
 on:
   workflow_dispatch:
+    inputs:
+      orchestrator_runid:
+        description: 'Orchestrator run ID'
+        required: false
+        type: string
   push:
     branches: [ main ]
 
 jobs:
   build:
+    name: ${{ inputs.orchestrator_runid && format('Build - Orchestrator-{0}', inputs.orchestrator_runid) || 'Build' }}
     runs-on: ubuntu-latest
     steps:
     - name: Checkout code
