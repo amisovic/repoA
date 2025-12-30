@@ -21,7 +21,7 @@ jobs:
     steps:
     - name: Invalidate all PRs
       run: |
-        gh workflow run orchestrate.yml --repo amisovic/orchestrator --ref ${{ github.ref_name }} --field action=invalidate
+        gh workflow run orchestrate-invalidate.yml --repo amisovic/orchestrator --ref ${{ github.ref_name }} --field action=invalidate
       env:
         GITHUB_TOKEN: ${{ secrets.PAT_WORKFLOWS }}
   build:
