@@ -33,4 +33,3 @@ jobs:
       run: |
         echo "This build process for application A"
         sleep 1
-        exit 1
