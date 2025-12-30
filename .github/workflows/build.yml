@@ -10,8 +10,20 @@ on:
         type: string
   push:
     branches: [ main ]
+  pull_request:
+    types: [opened, synchronize]
+    branches: [ main ]
 
 jobs:
+  invalidate-prs:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+    - name: Invalidate all PRs
+      run: |
+        gh workflow run orchestrate.yml --repo amisovic/orchestrator --ref ${{ github.ref_name }} --field action=invalidate
+      env:
+        GITHUB_TOKEN: ${{ secrets.PAT_WORKFLOWS }}
   build:
     runs-on: ubuntu-latest
     steps:
@@ -21,3 +33,4 @@ jobs:
       run: |
         echo "This build process for application A"
         sleep 1
+        exit 1
