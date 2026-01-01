@@ -7,6 +7,9 @@ on:
 jobs:
   post-orchestrator-status:
     runs-on: ubuntu-latest
+    permissions:
+      checks: write
+      contents: read
     steps:
       - name: Post check run
         run: |
@@ -18,4 +21,4 @@ jobs:
             -F output.title="Orchestrator Build" \
             -F output.summary="Build completed successfully via orchestrator"
         env:
-          GITHUB_TOKEN: ${{ secrets.PAT_WORKFLOWS }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
