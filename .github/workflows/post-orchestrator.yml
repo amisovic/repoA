@@ -18,4 +18,4 @@ jobs:
             -F output.title="Orchestrator Build" \
             -F output.summary="Build completed successfully via orchestrator"
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.PAT_WORKFLOWS }}
