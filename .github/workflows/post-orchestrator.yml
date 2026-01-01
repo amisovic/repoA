@@ -1,0 +1,21 @@
+name: Post Orchestrator Status
+
+on:
+  repository_dispatch:
+    types: [orchestrate-success]
+
+jobs:
+  post-orchestrator-status:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Post check run
+        run: |
+          gh api repos/${{ github.repository }}/check-runs \
+            -f name=orchestrator-build \
+            -f head_sha=${{ github.event.client_payload.head_sha }} \
+            -f status=completed \
+            -f conclusion=success \
+            -F output.title="Orchestrator Build" \
+            -F output.summary="Build completed successfully via orchestrator"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
