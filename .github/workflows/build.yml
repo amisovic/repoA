@@ -38,4 +38,6 @@ jobs:
         ls -l
         cat repoA.txt || true
         echo "This build process for application A"
+        echo "New test change for PR"
+        echo "Additional test for new PR"
         sleep 1
