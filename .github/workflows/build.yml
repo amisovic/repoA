@@ -8,13 +8,9 @@ on:
         description: 'Orchestrator run ID'
         required: false
         type: string
-  push:
-    branches: [ main ]
   pull_request:
     types: [opened, synchronize]
     branches: [ main ]
-  repository_dispatch:
-    types: [orchestrate-success]
 
 jobs:
   invalidate-prs:
@@ -27,6 +23,7 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.PAT_WORKFLOWS }}
   build:
+    if: github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
     steps:
     - name: Checkout code
@@ -38,8 +35,4 @@ jobs:
         ls -l
         cat repoA.txt || true
         echo "This build process for application A"
-        echo "New test change for PR"
-        echo "Fresh test for new PR"
-        echo "Quick test for status"
-        echo "Final test for status"
         sleep 1
