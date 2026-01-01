@@ -8,6 +8,9 @@ on:
         description: 'Orchestrator run ID'
         required: false
         type: string
+  pull_request:
+    types: [opened, synchronize]
+    branches: [ main ]
 
 jobs:
   build:
