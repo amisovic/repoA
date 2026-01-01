@@ -40,4 +40,5 @@ jobs:
         echo "This build process for application A"
         echo "New test change for PR"
         echo "Fresh test for new PR"
+        echo "Quick test for status"
         sleep 1
