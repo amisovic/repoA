@@ -12,3 +12,5 @@ jobs:
     - name: Dispatch invalidate
       run: |
         gh api /repos/${{ github.repository_owner }}/orchestrator/dispatches -f event_type=invalidate -f client_payload[action]=invalidate -f client_payload[branch]=${{ github.head_ref }}
+      env:
+        GH_TOKEN: ${{ github.token }}
